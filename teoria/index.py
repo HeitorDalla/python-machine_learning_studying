@@ -73,3 +73,8 @@ import pickle
 pickle.dump(clf, open('random_first_model.pkl', 'wb'))
 
 loaded_model = pickle.load(open('random_first_model.pkl', 'rb'))
+
+# Bônus = Ignorar avisos
+import warnings
+
+warnings.filterwarnings('ignore') # vai ignorar todos os avisos que ocorrerem no código
