@@ -39,9 +39,37 @@ score_trainning = clf.score(X_train, y_train)
 
 # O retorno foi de 100% pois ele foi treinado com todas as colunas e todos os labels, 
 # ou seja, ele teve a chance de se corrijir se algo estivesse errado
-print(score_trainning)
+print(score_trainning) # 100%
 
 score_test = clf.score(X_test, y_test)
 
-# O retorno foi de 80% pois ele nunca tinha visto os dados, e não foi treinado com os rótulos
-print(score_test)
+# O retorno foi de 86% pois ele nunca tinha visto os dados, e não foi treinado com os rótulos
+print(score_test) # 86%
+
+# Etapas que pode-se utilizar para avaliar o modelo
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+
+print(classification_report(y_test, y_preds))
+
+print(confusion_matrix(y_test, y_preds))
+
+print(accuracy_score(y_test, y_preds))
+
+# 5 - Modelo aprimorado - Estimativa para ver se pode-se melhorar o modelo ajustando os hiperparâmetros
+np.random.seed(42)
+
+for i in range (10, 100, 10):
+    print("Testando os modelos com: {} estimadores..." .format(i))
+
+    clf = RandomForestClassifier(n_estimators=i).fit(X_train, y_train)
+
+    print("Testando a precisão do modelo com os dados de 'test': {:.2f}%" .format(clf.score(X_test, y_test) * 100))
+
+    print('')
+
+# 6 - Exportar e importar um modelo
+import pickle
+
+pickle.dump(clf, open('random_first_model.pkl', 'wb'))
+
+loaded_model = pickle.load(open('random_first_model.pkl', 'rb'))
