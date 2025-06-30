@@ -1,16 +1,22 @@
-# Cenário - Problema para CLASSIFICAÇÃO. Veremos se uma pessoa tem ou não tem uma doença cardíaca
-# Objetivo do modelo - Ser capaz de aprender padrões, em seguida, classificar se uma amostra tem uma coisa ou não   
-
 import pandas as pd
 import numpy as np
 
-# 0 - Scikit-Learn workflow
+# Cenário - Problema para CLASSIFICAÇÃO. Veremos se uma pessoa tem ou não tem uma doença cardíaca
+# Objetivo do modelo - Ser capaz de aprender padrões, em seguida, classificar se uma amostra tem uma coisa ou não   
+
+# Scikit-Learn workflow
 
 # 1 - Deixar os dados prontos para uso
+
+# Separar os dados em caracteristicas e labels (cabeçalho), geralmente em 'X' e 'y'
+# Tratar os dados, geralmente sendo valores ausentes
+# Converter as colunas categóricas em numéricas
+
 df = pd.read_csv('data/heart-disease.csv')
 
 X = df.drop('target', axis=1)
 y = df['target']
+
 
 # 2 - Escolher o algorítmo para resolver nossos problemas
 from sklearn.ensemble import RandomForestClassifier # modelo de classificação
@@ -20,8 +26,9 @@ clf = RandomForestClassifier()
 # Parâmetros para a utilização do modelo
 print(clf.get_params())
 
+
 # 3 - Ajustar o modelo para os dados de treinamento e teste
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split # embaralha os dados
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
@@ -32,6 +39,7 @@ clf.fit(X_train, y_train)
 # Fazer uma previsão
 y_preds = clf.predict(X_test)
 print(y_preds)
+
 
 # 4 - Avaliar o modelo - avaliar a qualidade de previsões do modelo com os dados de treinamento e 
 # os dados de teste
@@ -55,6 +63,7 @@ print(confusion_matrix(y_test, y_preds))
 
 print(accuracy_score(y_test, y_preds))
 
+
 # 5 - Modelo aprimorado - Estimativa para ver se pode-se melhorar o modelo ajustando os hiperparâmetros
 np.random.seed(42)
 
@@ -66,6 +75,7 @@ for i in range (10, 100, 10):
     print("Testando a precisão do modelo com os dados de 'test': {:.2f}%" .format(clf.score(X_test, y_test) * 100))
 
     print('')
+
 
 # 6 - Exportar e importar um modelo
 import pickle
