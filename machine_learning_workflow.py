@@ -22,7 +22,7 @@ from sklearn.model_selection import train_test_split # embaralha os dados
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 
-# 2 - Escolher o algorítmo para resolver nossos problemas
+# 2 - Escolher o modelo (algoritmo) para resolver nossos problemas
 from sklearn.ensemble import RandomForestClassifier # modelo de classificação binária (0 ou 1)
 
 clf = RandomForestClassifier()
