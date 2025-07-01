@@ -78,9 +78,9 @@ for i in range (10, 100, 10):
 # 6 - Exportar e importar um modelo
 import pickle
 
-pickle.dump(clf, open('random_first_model.pkl', 'wb'))
+pickle.dump(clf, open('machine_learning/random_first_model.pkl', 'wb'))
 
-loaded_model = pickle.load(open('random_first_model.pkl', 'rb'))
+loaded_model = pickle.load(open('machine_learning/random_first_model.pkl', 'rb'))
 
 # Bônus = Ignorar avisos
 import warnings
