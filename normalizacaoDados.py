@@ -7,9 +7,7 @@ df = pd.read_csv("data/car-sales-extended-missing-data.csv")
 # Tratamento de dados
 print(df.isna().sum()) # verifica quantos valores ausentes há em cada coluna
 
-# 1 Maneira - Preencher com valores lógicos para interferir o menos possível
-print(df.info())
-
+# Preencher com valores lógicos para interferir o menos possível
 df['Make'] = df['Make'].fillna('missing') # preenche todos os valores nulos com 'missing'
 df['Colour'] = df['Colour'].fillna('missing') # preenche todos os valores nulos com 'missing'
 df['Odometer (KM)'] = df['Odometer (KM)'].fillna(df['Odometer (KM)'].mean()) # preenche todos os valores nulos com a média da coluna
@@ -20,10 +18,16 @@ df = df.dropna() # o melhor a se fazer é excluir os dados faltantes, pois não 
 X = df.drop('Price', axis=1)
 y = df['Price']
 
+# Separar o dataframe em treinamento e teste
+X_train, X_test, y_train, y_test = train_test_split(X, # colocando o dataframe numérico apenas
+                                                    y, 
+                                                    test_size=0.2)
+
 # Verificar dataframe - Existem dois campos que sao objetos, tem que transformar em numéricos
 print(df.info())
 
-# Transformar as categorias em números
+# Transformar as colunas categoricas em numericas
+
 from sklearn.preprocessing import OneHotEncoder # transformar categorias em números
 from sklearn.compose import ColumnTransformer # aplica essa transformação nas colunas escolhidas
 
@@ -35,19 +39,17 @@ transformer = ColumnTransformer([('one_hot', # nome da transformação
                                  variaveis_categoricas)], # lista como o nome das variáveis categóricas
                                  remainder='passthrough') # define o que fazer com as colunas que não estão nas lista de transformação, no caso, mantém no conjunto de dados
 
-transformed_X = transformer.fit_transform(X) # analisa os dados e faz a codificação
+X_train_transformed = transformer.fit_transform(X_train) # analisa os dados e faz a codificação
+X_test_transformed = transformer.transform(X_test)
 
-X_train, X_test, y_train, y_test = train_test_split(transformed_X, # colocando o dataframe numérico apenas
-                                                    y, 
-                                                    test_size=0.2)
 
 # Escolher o modelo e treina-lo
 from sklearn.ensemble import RandomForestRegressor # modelo de regressão
 
 model = RandomForestRegressor()
 
-trainning = model.fit(X_train, y_train)
-test = model.score(X_test, y_test)
+trainning = model.fit(X_train_transformed, y_train)
+test = model.score(X_test_transformed, y_test)
 
 print(trainning)
 print(test)
