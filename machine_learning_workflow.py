@@ -41,11 +41,11 @@ print(y_preds)
 
 # 4 - Avaliar o modelo - avaliar a qualidade de previsões do modelo com os dados de treinamento e 
 # os dados de teste
-score_trainning = clf.score(X_train, y_train)
+score_training = clf.score(X_train, y_train)
 
 # O retorno foi de 100% pois ele foi treinado com todas as colunas e todos os labels, 
 # ou seja, ele teve a chance de se corrijir se algo estivesse errado
-print(score_trainning) # 100%
+print(score_training) # 100%
 
 score_test = clf.score(X_test, y_test)
 

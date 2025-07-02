@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
-# Modelos
+# Modelos de regressão
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
 from sklearn.svm import SVR
@@ -16,7 +16,7 @@ dataframe = pd.DataFrame(housing['data'], columns=housing['feature_names'])
 
 dataframe['target'] = housing['target']
 
-# Separar os dados para treinamento e teste
+# Separar os dados em variáveis dependentes e independentes
 X = dataframe.drop('target', axis=1)
 y = dataframe['target']
 
@@ -31,7 +31,7 @@ X_train, X_test, y_train, y_teste = train_test_split(X,
 # Instanciar o modelo e ajusta-lo
 model = RandomForestRegressor()
 
-trainning = model.fit(X_train, y_train)
+training = model.fit(X_train, y_train)
 
 # Check score of the model (on the test set)
 testing = model.score(X_test, y_teste) # coeficiente de correlação entre variáveis
