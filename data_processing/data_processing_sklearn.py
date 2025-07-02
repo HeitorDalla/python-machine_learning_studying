@@ -85,8 +85,10 @@ from sklearn.ensemble import RandomForestRegressor
 
 model = RandomForestRegressor()
 
+# Instanciar e testar o modelo
 trainning = model.fit(X_train_final, y_train)
+
+# Checar a pontuação do modelo com o conjunto de teste
 test = model.score(X_test_final, y_test)
 
-print(trainning)
 print(test)
