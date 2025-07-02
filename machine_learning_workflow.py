@@ -42,15 +42,12 @@ print(y_preds)
 # 4 - Avaliar o modelo - avaliar a qualidade de previsões do modelo com os dados de treinamento e 
 # os dados de teste
 score_training = clf.score(X_train, y_train)
-
+print(score_training) # 100%
 # O retorno foi de 100% pois ele foi treinado com todas as colunas e todos os labels, 
 # ou seja, ele teve a chance de se corrijir se algo estivesse errado
-print(score_training) # 100%
 
 score_test = clf.score(X_test, y_test)
-
-# O retorno foi de 86% pois ele nunca tinha visto os dados, e não foi treinado com os rótulos
-print(score_test) # 86%
+print(score_test) # O retorno foi de 86% pois ele nunca tinha visto os dados, e não foi treinado com os rótulos
 
 # Etapas que pode-se utilizar para avaliar o modelo
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score

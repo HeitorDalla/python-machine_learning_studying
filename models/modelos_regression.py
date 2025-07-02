@@ -35,9 +35,13 @@ model = RandomForestRegressor()
 training = model.fit(X_train, y_train)
 
 # Fazer uma previsão
-y_preds = model.predict(X_test)
-print(y_preds)
+y_preds_train = model.predict(X_train)
+
+y_preds_test = model.predict(X_test)
 
 # Check score of the model (on the test set)
-testing = model.score(X_test, y_test) # coeficiente de correlação entre variáveis
-print(testing)
+from sklearn.metrics import r2_score
+
+# Indica quanto da variação dos valores reais o modelo de regressão conseguiu explicar
+test_score = r2_score(y_test, y_preds_test)
+print(test_score)

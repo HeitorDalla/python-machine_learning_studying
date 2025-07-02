@@ -25,30 +25,18 @@ X_train, X_test, y_train, y_test = train_test_split(X,
                                                     y,
                                                     test_size=0.2)
 
-# Implementar modelo para usabilidade
-model = SVC()
-
-training = model.fit(X_train, y_train)
-
-# Checar a classificação do modelo com o conjunto de testes
-testing = model.score(X_test, y_test)
-print(testing)
-
-
 # Instanciando o modelo de classificacao
-model2 = RandomForestClassifier()
+model = RandomForestClassifier()
 
  # Treinamento dos dados
-training2 = model2.fit(X_train, y_train)
+training = model.fit(X_train, y_train)
 
 # Predict dos dados
-y_preds = model2.predict(X_test)
+y_preds = model.predict(X_test)
 
 # Avaliação do modelo
 from sklearn.metrics import accuracy_score
+
+# Checar a acurácia do modelo, ou seja, porcentagem de acertos em cima dos exemplos
 avaliacao = accuracy_score(y_test, y_preds)
 print(avaliacao)
-
-# Checar a classificacao do modelo com o conjunto de testes
-testing2 = model2.score(X_test, y_test)
-print(testing2)
