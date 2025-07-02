@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
 from sklearn.svm import SVR
+from sklearn.ensemble import RandomForestRegressor
 
 # Tratamento dos Dados
 # Análise dos Dados
@@ -28,7 +29,7 @@ X_train, X_test, y_train, y_teste = train_test_split(X,
                                                      test_size=0.2)
 
 # Instanciar o modelo e ajusta-lo
-model = Ridge()
+model = RandomForestRegressor()
 
 trainning = model.fit(X_train, y_train)
 
