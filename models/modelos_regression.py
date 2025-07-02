@@ -24,16 +24,20 @@ y = dataframe['target']
 np.random.seed(42)
 
 # Dividir os dados em treinamento e teste
-X_train, X_test, y_train, y_teste = train_test_split(X,
+X_train, X_test, y_train, y_test = train_test_split(X,
                                                      y,
                                                      test_size=0.2)
 
 # Instanciar o modelo e ajusta-lo
 model = RandomForestRegressor()
 
+# Treinar o modelo
 training = model.fit(X_train, y_train)
 
-# Check score of the model (on the test set)
-testing = model.score(X_test, y_teste) # coeficiente de correlação entre variáveis
+# Fazer uma previsão
+y_preds = model.predict(X_test)
+print(y_preds)
 
+# Check score of the model (on the test set)
+testing = model.score(X_test, y_test) # coeficiente de correlação entre variáveis
 print(testing)

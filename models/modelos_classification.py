@@ -32,15 +32,23 @@ training = model.fit(X_train, y_train)
 
 # Checar a classificação do modelo com o conjunto de testes
 testing = model.score(X_test, y_test)
-
 print(testing)
 
-# Utilizando a arvorde de classficicao
+
+# Instanciando o modelo de classificacao
 model2 = RandomForestClassifier()
 
+ # Treinamento dos dados
 training2 = model2.fit(X_train, y_train)
+
+# Predict dos dados
+y_preds = model2.predict(X_test)
+
+# Avaliação do modelo
+from sklearn.metrics import accuracy_score
+avaliacao = accuracy_score(y_test, y_preds)
+print(avaliacao)
 
 # Checar a classificacao do modelo com o conjunto de testes
 testing2 = model2.score(X_test, y_test)
-
 print(testing2)
