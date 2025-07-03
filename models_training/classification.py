@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 # Modelos de treinamento
 from sklearn.ensemble import RandomForestClassifier
 
+# Tratamento dos Dados
 np.random.seed(42)
 
 carregamento = load_iris()
@@ -61,8 +62,9 @@ accuracy_cross_score = cross_val_score(model, X, y, cv=10, scoring='accuracy') #
 
 test_score = accuracy_score(y_test, y_preds) # vai retornar a acurácia padrão (score)
 
-# São equivalentes ao mesmo resultado.
+### São equivalentes ao mesmo resultado.
 
+# Avaliação da métrica 'roc_curve'
 from sklearn.metrics import roc_curve # distingue as duas classes (0 ou 1) 
 
 # Calculo
@@ -87,9 +89,10 @@ plt.title("ROC")
 plt.legend()
 plt.show()
 
-# Avaliação do modelo 'roc_auc_score'
+# Avaliação da métrica 'roc_auc_score'
 from sklearn.metrics import roc_auc_score
 
 # Calculo
 auc_roc_score = roc_auc_score(y_test, y_proba[:, 1])
 print(auc_roc_score)
+

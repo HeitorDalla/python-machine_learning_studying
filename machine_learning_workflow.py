@@ -27,9 +27,6 @@ from sklearn.ensemble import RandomForestClassifier # modelo de classificação 
 
 clf = RandomForestClassifier()
 
-# Parâmetros para a utilização do modelo
-print(clf.get_params())
-
 
 # 3 - Ajustar o modelo para os dados de treinamento e teste
 clf.fit(X_train, y_train)
