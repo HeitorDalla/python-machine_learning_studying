@@ -32,8 +32,11 @@ clf = RandomForestClassifier()
 clf.fit(X_train, y_train)
 
 # Fazer uma previsão
-y_preds = clf.predict(X_test)
-print(y_preds)
+X_train_prediction = clf.predict(X_train)
+print(X_train_prediction)
+
+X_test_prediction = clf.predict(X_test)
+print(X_test_prediction)
 
 
 # 4 - Avaliar o modelo - avaliar a qualidade de previsões do modelo com os dados de treinamento e 
@@ -49,11 +52,11 @@ print(score_test) # O retorno foi de 86% pois ele nunca tinha visto os dados, e 
 # Etapas que pode-se utilizar para avaliar o modelo
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
-print(classification_report(y_test, y_preds))
+print(classification_report(y_test, X_test_prediction))
 
-print(confusion_matrix(y_test, y_preds))
+print(confusion_matrix(y_test, X_test_prediction))
 
-print(accuracy_score(y_test, y_preds))
+print(accuracy_score(y_test, X_test_prediction))
 
 
 # 5 - Modelo aprimorado - Estimativa para ver se pode-se melhorar o modelo ajustando os hiperparâmetros

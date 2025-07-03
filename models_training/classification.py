@@ -1,15 +1,16 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
+from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 # Modelos de treinamento
 from sklearn.ensemble import RandomForestClassifier
 
+
 # Tratamento dos Dados
 np.random.seed(42)
 
-carregamento = load_iris()
+carregamento = load_breast_cancer()
 
 dataframe = pd.DataFrame(carregamento['data'], columns=carregamento['feature_names'])
 
@@ -27,7 +28,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,
                                                     test_size=0.2)
 
 
-# Instanciando o modelo de classificacao e fazendo previsões
+# Instanciando o modelo de classificacao, treinando os dados e fazendo previsões
 model = RandomForestClassifier()
 
 # Treinamento dos dados
@@ -52,7 +53,9 @@ print('-----------------------')
 # não escolhe um direto.
 
 
-# Avaliação do modelo
+# Avaliação do Modelo por meio de Métricas
+
+# accuracy_score - Proporção de Acertos sobre o total de dados
 from sklearn.model_selection import cross_val_score # modelo para diversas avaliações
 from sklearn.metrics import accuracy_score # Checar a acurácia do modelo, ou seja, porcentagem de acertos em cima dos exemplos
 
@@ -64,8 +67,9 @@ test_score = accuracy_score(y_test, y_preds) # vai retornar a acurácia padrão 
 
 ### São equivalentes ao mesmo resultado.
 
+
 # Avaliação da métrica 'roc_curve'
-from sklearn.metrics import roc_curve # distingue as duas classes (0 ou 1) 
+from sklearn.metrics import roc_curve # distingue as duas classes (0 ou 1)
 
 # Calculo
 fpr, tpr, thresholds = roc_curve(y_test, y_proba[:, 1])
@@ -89,6 +93,7 @@ plt.title("ROC")
 plt.legend()
 plt.show()
 
+
 # Avaliação da métrica 'roc_auc_score'
 from sklearn.metrics import roc_auc_score
 
@@ -96,3 +101,30 @@ from sklearn.metrics import roc_auc_score
 auc_roc_score = roc_auc_score(y_test, y_proba[:, 1])
 print(auc_roc_score)
 
+
+# confusion_matrix - Mostra os acertos e erros (análise detalhada)
+from sklearn.metrics import confusion_matrix
+
+metric_confusion = confusion_matrix(y_test, y_preds)
+print(metric_confusion)
+
+# Tabela da Métrica
+table_confusion = pd.crosstab(y_test,
+                              y_preds,
+                              rownames=['Rótulo Real'],
+                              colnames=['Rótulo Previsto'])
+print(table_confusion)
+
+# Gráfico da Métrica
+from sklearn.metrics import ConfusionMatrixDisplay
+
+# Usando o from_estimator - Usa todos os dados, sem separação de treinamento e teste
+grafico = ConfusionMatrixDisplay.from_estimator(estimator=model,
+                                                X=X,
+                                                y=y)
+plt.show()
+
+# Usando o from_predictions - Usa os dados já filtrados em treinamento e teste
+grafico2 = ConfusionMatrixDisplay.from_predictions(y_true=y_test,
+                                                   y_pred=y_preds)
+plt.show()
