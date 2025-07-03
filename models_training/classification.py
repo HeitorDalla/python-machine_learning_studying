@@ -32,6 +32,7 @@ training = model.fit(X_train, y_train)
 
 # Predict dos dados
 y_preds = model.predict(X_test)
+print(y_preds)
 
 # Avaliação do modelo
 from sklearn.model_selection import cross_val_score
