@@ -56,7 +56,7 @@ print('-----------------------')
 # Avaliação do Modelo por meio de Métricas
 
 # accuracy_score - Proporção de Acertos sobre o total de dados
-from sklearn.model_selection import cross_val_score # modelo para diversas avaliações
+from sklearn.model_selection import cross_val_score # modelo para diversas métricas
 from sklearn.metrics import accuracy_score # Checar a acurácia do modelo, ou seja, porcentagem de acertos em cima dos exemplos
 
 default_cross_score = cross_val_score(model, X, y, cv=10, scoring=None) # array de 10 treinamentos diferentes (vai retornar a acurácia padrão (score))
@@ -128,3 +128,12 @@ plt.show()
 grafico2 = ConfusionMatrixDisplay.from_predictions(y_true=y_test,
                                                    y_pred=y_preds)
 plt.show()
+
+
+# classification_report - Usa diferentes métricas para avaliar um modelo
+from sklearn.metrics import classification_report
+
+report_predictions = classification_report(y_test, y_preds)
+print(report_predictions)
+# precision - verdadeiro positivo / verdadeiro positivo + falso positivo: (acertos em quando o modelo prevê 1)
+# recall - verdadeiro positivo / verdedeiro positivo + falso negativo: (acertos quando o rótulo verdadeiro é 1)
