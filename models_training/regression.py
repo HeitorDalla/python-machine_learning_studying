@@ -8,6 +8,7 @@ from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
 from sklearn.svm import SVR
 
+
 # Tratamento dos Dados
 # Análise dos Dados
 housing = fetch_california_housing()
@@ -28,7 +29,8 @@ X_train, X_test, y_train, y_test = train_test_split(X,
                                                      y,
                                                      test_size=0.2)
 
-# Instanciar o modelo e ajusta-lo
+
+# Instanciar o modelo e ajusta-lo para o treinamento
 model = RandomForestRegressor()
 
 # Treinar o modelo
@@ -37,7 +39,10 @@ training = model.fit(X_train, y_train)
 # Fazer uma previsão
 y_preds_test = model.predict(X_test)
 
-# Checar score do modelo com o conjunto de teste
+
+# Avaliação do Modelo por meio de Métricas
+
+# r2_score - 
 from sklearn.model_selection import cross_val_score # Vai gerar 'cv' treinamentos diferentes para o mesmo conjunto de dados
 from sklearn.metrics import r2_score # Indica quanto da variação dos valores reais o modelo de regressão conseguiu explicar
 
@@ -48,3 +53,24 @@ r2_cross_score = cross_val_score(model, X, y, cv=10, scoring='r2') # array de 10
 test_score = r2_score(y_test, y_preds_test) # valor de um treinamento
 
 # São equivalentes ao mesmo resultado.
+
+
+# MAE (Mean absolute error) - pega o erro médio entre o valor real e a previsão, sem direção (- ou +)
+from sklearn.metrics import mean_absolute_error
+
+# mean = mean_absolute_error(y_test, y_preds_test)
+# print(mean)
+# Interpretação - O modelo erra {} a cada previsão.
+
+dataframe_difference = pd.DataFrame(data={'reais_valores': y_test,
+                                          'previsao_valores':y_preds_test})
+
+dataframe_difference['differences'] = dataframe_difference['previsao_valores'] - dataframe_difference['reais_valores']
+print(dataframe)
+
+
+# MSE (Mean Squared Error) - o erro médio, porém ao quadrado, penalizando ainda mais os erros grandes do modelo
+from sklearn.metrics import mean_squared_error
+
+# squared = mean_squared_error(y_test, y_preds_test)
+# print(squared)
