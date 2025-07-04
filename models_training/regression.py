@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
 from sklearn.svm import SVR
-
+print('inicio')
 
 # Tratamento dos Dados
 # Análise dos Dados
@@ -46,9 +46,9 @@ y_preds_test = model.predict(X_test)
 from sklearn.model_selection import cross_val_score # Vai gerar 'cv' treinamentos diferentes para o mesmo conjunto de dados
 from sklearn.metrics import r2_score # Indica quanto da variação dos valores reais o modelo de regressão conseguiu explicar
 
-default_cross_score = cross_val_score(model, X, y, cv=10, scoring=None) # array de 10 treinamentos diferentes
+default_cross_score = cross_val_score(model, X, y, cv=2, scoring=None) # array de 10 treinamentos diferentes
 
-r2_cross_score = cross_val_score(model, X, y, cv=10, scoring='r2') # array de 10 treinamentos diferentes
+r2_cross_score = cross_val_score(model, X, y, cv=2, scoring='r2') # array de 10 treinamentos diferentes
 
 test_score = r2_score(y_test, y_preds_test) # valor de um treinamento
 
@@ -58,19 +58,23 @@ test_score = r2_score(y_test, y_preds_test) # valor de um treinamento
 # MAE (Mean absolute error) - pega o erro médio entre o valor real e a previsão, sem direção (- ou +)
 from sklearn.metrics import mean_absolute_error
 
-# mean = mean_absolute_error(y_test, y_preds_test)
-# print(mean)
+# Utilizando a métrica
+mean = mean_absolute_error(y_test, y_preds_test)
+print(mean)
 # Interpretação - O modelo erra {} a cada previsão.
 
+# Fazendo manualmente
 dataframe_difference = pd.DataFrame(data={'reais_valores': y_test,
                                           'previsao_valores':y_preds_test})
 
 dataframe_difference['differences'] = dataframe_difference['previsao_valores'] - dataframe_difference['reais_valores']
-print(dataframe)
+print(dataframe_difference)
+
+print(np.abs(dataframe_difference['differences']).mean()) # abs - pois o valor deve ser absoluto, ou seja, ignorar ser positivo ou negativo
 
 
 # MSE (Mean Squared Error) - o erro médio, porém ao quadrado, penalizando ainda mais os erros grandes do modelo
 from sklearn.metrics import mean_squared_error
 
-# squared = mean_squared_error(y_test, y_preds_test)
-# print(squared)
+squared = mean_squared_error(y_test, y_preds_test)
+print(squared)
