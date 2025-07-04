@@ -135,5 +135,7 @@ from sklearn.metrics import classification_report
 
 report_predictions = classification_report(y_test, y_preds)
 print(report_predictions)
+
 # precision - verdadeiro positivo / verdadeiro positivo + falso positivo: (acertos em quando o modelo prevê 1)
 # recall - verdadeiro positivo / verdedeiro positivo + falso negativo: (acertos quando o rótulo verdadeiro é 1)
+# f1-score - representa a média harmônica entre o 'precision' e 'recall'
