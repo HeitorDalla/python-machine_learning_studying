@@ -86,8 +86,12 @@ rs_metrics = evaluated_metrics(y_test, rs_y_preds)
 print(rs_metrics)
 
 
-# Salvar o Modelo
+# Exportar o Modelo
 import pickle
 
 # Salvando o modelo finalizado
 pickle.dump(rs_model, open('models_final/randomized_search_model.pkl', 'wb'))
+
+
+# Importar um modelo
+loaded_pickle_model = pickle.load(open("models_final/randomized_search_model.pkl", "rb"))

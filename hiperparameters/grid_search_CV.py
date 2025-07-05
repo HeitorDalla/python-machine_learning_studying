@@ -85,7 +85,12 @@ gs_y_preds = gs_model.predict(X_test)
 gs_metrics = evaluated_metrics(y_test, gs_y_preds)
 print(gs_metrics)
 
-# Salvando o modelo finalizado
+
+# Exportar o modelo finalizado
 from joblib import dump, load
 
 dump(gs_model, filename='models_final/grid_search_model.joblib')
+
+
+# Importar um modelo finalizado
+loaded_joblib_model = load(filename="models_final/grid_search_model.joblib")
