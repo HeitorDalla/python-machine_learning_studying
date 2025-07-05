@@ -84,3 +84,10 @@ rs_y_preds = rs_model.predict(X_test)
 # Classificar o modelo com as métricas
 rs_metrics = evaluated_metrics(y_test, rs_y_preds)
 print(rs_metrics)
+
+
+# Salvar o Modelo
+import pickle
+
+# Salvando o modelo finalizado
+pickle.dump(rs_model, open('models_final/randomized_search_model.pkl', 'wb'))
