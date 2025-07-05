@@ -68,12 +68,12 @@ grid = {
 
 rs_model = RandomizedSearchCV(model, # modelo que vai utilizar
                               param_distributions=grid, # os parâmetros que vai utilizar
-                              n_iter=10,
-                              cv=5,
+                              n_iter=10, # número de modelos para exmperimentar
+                              cv=5, # cruzada - faz divisões diferentes em cada vez
                               verbose=2)
 
-modelo_parametrizado = rs_model.fit(X_train, y_train)
-print(modelo_parametrizado)
+# Treinamento dos dados parametrizados
+modelo_treinado = rs_model.fit(X_train, y_train)
 
 # Ver o melhor resultado da parametrização
 print(rs_model.best_params_)

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Cenário - Problema para CLASSIFICAÇÃO. Veremos se uma pessoa tem ou não tem uma doença cardíaca
-# Objetivo do modelo - Ser capaz de aprender padrões, em seguida, classificar se uma amostra tem uma coisa ou não   
+# Objetivo do modelo - Ser capaz de aprender padrões, em seguida, classificar se uma amostra tem uma coisa ou não doença   
 
 # Scikit-Learn workflow
 
