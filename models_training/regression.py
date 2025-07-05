@@ -7,7 +7,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
 from sklearn.svm import SVR
-print('inicio')
 
 # Tratamento dos Dados
 # Análise dos Dados
